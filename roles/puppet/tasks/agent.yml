@@ -1,0 +1,21 @@
+---
+- name: Instala o agente Debian
+  apt:
+    name: puppet-agent
+    state: present
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Instala o agente RedHat
+  yum:
+    name: puppet-agent
+    state: present
+    update_cache: yes
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Inicia o puppet-agent
+  service:
+    name: puppet
+    state: started
+    enabled: yes

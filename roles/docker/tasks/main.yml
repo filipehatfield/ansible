@@ -1,0 +1,15 @@
+---
+# tasks file for docker
+
+- name: Instalação Docker
+  hosts: docker
+
+  tasks:
+    - name: Removendo o Docker antigo
+      apt:
+        name: "{{item}}"
+        state: absent
+      with_items:
+        - docker
+        - docker-engine
+        - docker.io
